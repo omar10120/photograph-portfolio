@@ -1,0 +1,10 @@
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.logo {
+  height: 40px;
+  will-change: filter;
+  transition: filter 300ms;
+}
