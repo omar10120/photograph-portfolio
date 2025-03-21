@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
+import Footer from '../components/Footer';
 
 const PageContainer = styled.div`
   min-height: 100vh;
@@ -436,6 +437,7 @@ const SocialMediaMarketing = () => {
           </motion.div>
         </Grid>
       </Section>
+      <Footer />
     </PageContainer>
   );
 };

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const FooterContainer = styled.footer`
   background-color: #141414;
@@ -97,7 +98,7 @@ const BottomBar = styled.div`
 
 const Footer = () => {
   return (
-    <FooterContainer id="contact">
+    <FooterContainer>
       <FooterContent>
         <FooterSection>
           <h3>About Us</h3>
@@ -147,22 +148,22 @@ const Footer = () => {
         <FooterSection>
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#clients">Clients</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/services">Services</Link></li>
+            <li><Link to="/portfolio">Portfolio</Link></li>
+            <li><Link to="/clients">Clients</Link></li>
+            <li><Link to="/contact">Contact</Link></li>
           </ul>
         </FooterSection>
 
         <FooterSection>
           <h3>Services</h3>
           <ul>
-            <li><a href="#photography">Photography</a></li>
-            <li><a href="#videography">Videography</a></li>
-            <li><a href="#graphic-design">Graphic Design</a></li>
-            <li><a href="#marketing">Digital Marketing</a></li>
-            <li><a href="#web-development">Web Development</a></li>
+            <li><Link to="/photography">Photography</Link></li>
+            <li><Link to="/videos">Videography</Link></li>
+            <li><Link to="/graphic-design">Graphic Design</Link></li>
+            <li><Link to="/social-media">Digital Marketing</Link></li>
+            <li><Link to="/web-development">Web Development</Link></li>
           </ul>
         </FooterSection>
 
@@ -172,25 +173,25 @@ const Footer = () => {
             <svg viewBox="0 0 24 24">
               <path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
             </svg>
-            123 Creative Street, Design City
+            Erbil - English Village
           </ContactInfo>
           <ContactInfo>
             <svg viewBox="0 0 24 24">
               <path fill="currentColor" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
             </svg>
-            contact@example.com
+            info@elements-creative.com
           </ContactInfo>
           <ContactInfo>
             <svg viewBox="0 0 24 24">
               <path fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
             </svg>
-            +1 234 567 890
+            00964 771 925 0760
           </ContactInfo>
         </FooterSection>
       </FooterContent>
 
       <BottomBar>
-        <p>© {new Date().getFullYear()} Your Company. All rights reserved.</p>
+        <p> {new Date().getFullYear()} Elements Creative. All rights reserved.</p>
       </BottomBar>
     </FooterContainer>
   );

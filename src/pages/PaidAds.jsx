@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import styled from '@emotion/styled';
+import Footer from '../components/Footer';
 
 const PageContainer = styled.div`
   min-height: 100vh;
@@ -315,6 +316,7 @@ const PaidAds = () => {
           </ImageContainer>
         </Grid>
       </Section>
+      <Footer />
     </PageContainer>
   );
 };

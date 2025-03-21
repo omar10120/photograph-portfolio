@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
+import Footer from '../components/Footer';
 
 const PageContainer = styled.div`
   min-height: 100vh;
@@ -430,6 +431,7 @@ const Photography = () => {
           </PhotoGrid>
         </Section>
       ))}
+      <Footer />
     </PageContainer>
   );
 };
