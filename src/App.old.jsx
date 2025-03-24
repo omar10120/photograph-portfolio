@@ -296,42 +296,42 @@ const portfolioItems = [
     title: 'Nature Photography',
     category: 'photography',
     description: 'Capturing the beauty of nature',
-    image: 'https://source.unsplash.com/random/600x400?nature'
+    image: 'images/paid-ads-bg'
   },
   {
     id: 2,
     title: 'Brand Identity',
     category: 'graphic-design',
     description: 'Modern brand design',
-    image: 'https://source.unsplash.com/random/600x400?design'
+    image: 'images/paid-ads-bg'
   },
   {
     id: 3,
     title: 'Social Media Campaign',
     category: 'marketing',
     description: 'Engaging social content',
-    image: 'https://source.unsplash.com/random/600x400?social'
+    image: 'images/paid-ads-bg'
   },
   {
     id: 4,
     title: 'Product Video',
     category: 'video',
     description: 'Professional product showcase',
-    image: 'https://source.unsplash.com/random/600x400?product'
+    image: 'images/paid-ads-bg'
   },
   {
     id: 5,
     title: 'Website Design',
     category: 'web',
     description: 'Modern web experience',
-    image: 'https://source.unsplash.com/random/600x400?website'
+    image: 'images/paid-ads-bg'
   },
   {
     id: 6,
     title: 'Marketing Strategy',
     category: 'marketing',
     description: 'Comprehensive marketing plan',
-    image: 'https://source.unsplash.com/random/600x400?marketing'
+    image: 'images/paid-ads-bg'
   }
 ];
 
@@ -452,6 +452,7 @@ function App() {
               <div className="overlay">
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
+ 
               </div>
             </PortfolioItem>
           ))}

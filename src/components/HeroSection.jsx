@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
+import heroImage from '../images/photography_GIF.gif';
 
 const HeroContainer = styled.div`
   min-height: 100vh;
@@ -11,10 +12,27 @@ const HeroContainer = styled.div`
   padding: 0 5%;
   position: relative;
   overflow: hidden;
+  background-image: url(${heroImage});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+  }
 `;
 
 const HeroContent = styled.div`
   max-width: 800px;
+  position: relative;
+  z-index: 2;
 `;
 
 const Title = styled(motion.h1)`

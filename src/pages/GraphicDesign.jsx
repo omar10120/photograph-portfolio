@@ -1,6 +1,15 @@
 import { motion } from 'framer-motion';
 import styled from '@emotion/styled';
 import Footer from '../components/Footer';
+import bgImage from '../images/hero-bg.jpg';
+import social1 from '../images/social1.jpg';
+import social2 from '../images/social2.jpg';
+import social3 from '../images/social3.jpg';
+import social4 from '../images/social4.jpg';
+import social5 from '../images/social5.jpg';
+import social6 from '../images/social6.jpg';
+import elmirRestaurant from '../images/elmir-restaurant.jpg';
+import sabkehRestaurant from '../images/sabkeh-restaurant.jpg';
 
 const PageContainer = styled.div`
   min-height: 100vh;
@@ -17,7 +26,7 @@ const HeroSection = styled.section`
   padding: 0 5%;
   margin-top: -80px;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)),
-              url('/images/graphic-design-bg.jpg') center/cover no-repeat fixed;
+              url(${bgImage}) center/cover no-repeat fixed;
   
   &::before {
     content: '';
@@ -194,7 +203,7 @@ const GraphicDesign = () => {
         <SectionSubtitle>+1,500 Ideation and Graphic Design for 50 Happy Clients in Different Sectors and Cities</SectionSubtitle>
         <SocialDesignGrid>
           <motion.img 
-            src="/images/social1.jpg" 
+            src={social1}
             alt="Now in Erbil"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -202,7 +211,7 @@ const GraphicDesign = () => {
             transition={{ duration: 0.6 }}
           />
           <motion.img 
-            src="/images/social2.jpg" 
+            src={social2}
             alt="Coffee Shop Design"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -210,7 +219,7 @@ const GraphicDesign = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
           />
           <motion.img 
-            src="/images/social3.jpg" 
+            src={social3}
             alt="Restaurant Menu"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -218,7 +227,7 @@ const GraphicDesign = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           />
           <motion.img 
-            src="/images/social4.jpg" 
+            src={social4}
             alt="Travel Agency"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -226,7 +235,7 @@ const GraphicDesign = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
           />
           <motion.img 
-            src="/images/social5.jpg" 
+            src={social5}
             alt="Product Launch"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -234,7 +243,7 @@ const GraphicDesign = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
           />
           <motion.img 
-            src="/images/social6.jpg" 
+            src={social6}
             alt="Event Promotion"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -254,10 +263,10 @@ const GraphicDesign = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <img src="/images/erada-center.jpg" alt="Erada Center Branding" />
+            <img src={elmirRestaurant} alt="Elmir Restaurant Branding" />
             <ProjectContent>
-              <h3>Erada Center</h3>
-              <p>A comprehensive branding project for a mental health treatment and rehab center, featuring a modern and compassionate design approach that reflects their mission of healing and support.</p>
+              <h3>Elmir Restaurant</h3>
+              <p>A distinguished restaurant branding that celebrates Arabic cuisine, incorporating a dark green color palette symbolizing growth and luxury. The logo is crafted using elegant Arabic calligraphy, reflecting cultural heritage.</p>
             </ProjectContent>
           </ProjectCard>
 
@@ -267,23 +276,10 @@ const GraphicDesign = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <img src="/images/sabkeh-restaurant.jpg" alt="Sabkeh Restaurant Branding" />
+            <img src={sabkehRestaurant} alt="Sabkeh Restaurant Branding" />
             <ProjectContent>
               <h3>Sabkeh Restaurant</h3>
               <p>A modern restaurant branding that combines elegance with a touch of playfulness, using a sophisticated color palette of black, white, and beige. The brand's logo features a cursive font with the letter 'S' creatively resembling a spatula.</p>
-            </ProjectContent>
-          </ProjectCard>
-
-          <ProjectCard
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <img src="/images/elmir-restaurant.jpg" alt="Elmir Restaurant Branding" />
-            <ProjectContent>
-              <h3>Elmir Restaurant</h3>
-              <p>A distinguished restaurant branding that celebrates Arabic cuisine, incorporating a dark green color palette symbolizing growth and luxury. The logo is crafted using elegant Arabic calligraphy, reflecting cultural heritage.</p>
             </ProjectContent>
           </ProjectCard>
         </ProjectsGrid>

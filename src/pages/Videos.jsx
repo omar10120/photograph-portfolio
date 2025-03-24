@@ -2,6 +2,15 @@ import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Footer from '../components/Footer';
+import food1 from '../images/food/food1.jpg';
+import food2 from '../images/food/food2.jpg';
+import car1 from '../images/cars/car1.jpg';
+import car2 from '../images/cars/car2.jpg';
+import car3 from '../images/cars/car3.jpg';
+import luxury1 from '../images/luxury/watch1.jpg';
+import luxury2 from '../images/luxury/watch2.jpg';
+import luxury3 from '../images/luxury/watch3.jpg';
+import sampleVideo from '../images/video.mp4';
 
 const PageContainer = styled.div`
   min-height: 100vh;
@@ -203,6 +212,13 @@ const VideoCard = styled(motion.div)`
   }
 `;
 
+const VideoPlayer = styled.video`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+`;
+
 const Modal = styled(motion.div)`
   position: fixed;
   inset: 0;
@@ -214,7 +230,7 @@ const Modal = styled(motion.div)`
   padding: 2rem;
 `;
 
-const ModalContent = styled(motion.div)`
+const VideoContainer = styled(motion.div)`
   position: relative;
   width: 100%;
   max-width: 1000px;
@@ -222,12 +238,6 @@ const ModalContent = styled(motion.div)`
   background: #000;
   border-radius: 8px;
   overflow: hidden;
-
-  iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
 `;
 
 const CloseButton = styled.button`
@@ -249,31 +259,23 @@ const CloseButton = styled.button`
 `;
 
 const Videos = () => {
-  const [selectedVideo, setSelectedVideo] = useState(null);
-
-  const sections = [
+  const videoCategories = [
     {
-      id: 'lifestyle',
-      title: 'Lifestyle Videos',
-      description: 'Showcase the human connection and real-life experiences behind your brand. Perfect for product demonstrations, customer testimonials, or aspirational storytelling.',
+      id: 'commercial',
+      title: 'Commercial Videos',
+      description: 'Engaging commercial videos that capture attention and drive results. From product launches to brand stories, we create content that resonates with your audience.',
       videos: [
         {
-          id: 'mango-fashion',
-          title: 'Mango Fashion',
-          thumbnail: '/images/luxury/watch1.jpg',
-          embedUrl: 'https://www.youtube.com/embed/your-video-id'
+          id: 'luxury-cars',
+          title: 'Luxury Cars Showcase',
+          thumbnail: car1,
+          videoUrl: sampleVideo
         },
         {
-          id: 'vergnano-life',
-          title: 'Vergnano Life',
-          thumbnail: '/images/luxury/watch2.jpg',
-          embedUrl: 'https://www.youtube.com/embed/your-video-id'
-        },
-        {
-          id: 'papparoti',
-          title: 'Papparoti Awrin',
-          thumbnail: '/images/luxury/watch3.jpg',
-          embedUrl: 'https://www.youtube.com/embed/your-video-id'
+          id: 'restaurant-promo',
+          title: 'Restaurant Promotional Video',
+          thumbnail: car2,
+          videoUrl: sampleVideo
         }
       ]
     },
@@ -285,14 +287,39 @@ const Videos = () => {
         {
           id: 'swedish-hospital',
           title: 'Swedish Hospital Zama',
-          thumbnail: '/images/food/food1.jpg',
-          embedUrl: 'https://www.youtube.com/embed/your-video-id'
+          thumbnail: food1,
+          videoUrl: sampleVideo
         },
         {
           id: 'vergnano-takeaway',
           title: 'Vergnano Take Away',
-          thumbnail: '/images/food/food2.jpg',
-          embedUrl: 'https://www.youtube.com/embed/your-video-id'
+          thumbnail: food2,
+          videoUrl: sampleVideo
+        }
+      ]
+    },
+    {
+      id: 'luxury',
+      title: 'Luxury & Lifestyle',
+      description: 'Showcase luxury products and lifestyle experiences with sophisticated and elegant video content that appeals to high-end audiences.',
+      videos: [
+        {
+          id: 'mango-fashion',
+          title: 'Mango Fashion',
+          thumbnail: luxury1,
+          videoUrl: sampleVideo
+        },
+        {
+          id: 'vergnano-life',
+          title: 'Vergnano Life',
+          thumbnail: luxury2,
+          videoUrl: sampleVideo
+        },
+        {
+          id: 'papparoti',
+          title: 'Papparoti Awrin',
+          thumbnail: luxury3,
+          videoUrl: sampleVideo
         }
       ]
     },
@@ -304,24 +331,26 @@ const Videos = () => {
         {
           id: 'can-unlock',
           title: 'Can Unlock',
-          thumbnail: '/images/cars/car1.jpg',
-          embedUrl: 'https://www.youtube.com/embed/your-video-id'
+          thumbnail: car1,
+          videoUrl: sampleVideo
         },
         {
           id: 'unboxing',
           title: 'Unboxing Watch',
-          thumbnail: '/images/cars/car2.jpg',
-          embedUrl: 'https://www.youtube.com/embed/your-video-id'
+          thumbnail: car2,
+          videoUrl: sampleVideo
         },
         {
           id: 'barber',
           title: 'Barber Shop',
-          thumbnail: '/images/cars/car3.jpg',
-          embedUrl: 'https://www.youtube.com/embed/your-video-id'
+          thumbnail: car3,
+          videoUrl: sampleVideo
         }
       ]
     }
   ];
+
+  const [selectedVideo, setSelectedVideo] = useState(null);
 
   return (
     <PageContainer>
@@ -344,7 +373,7 @@ const Videos = () => {
         </HeroContent>
       </HeroSection>
 
-      {sections.map((section) => (
+      {videoCategories.map((section) => (
         <Section key={section.id} id={section.id}>
           <SectionTitle>{section.title}</SectionTitle>
           <SectionDescription>{section.description}</SectionDescription>
@@ -388,19 +417,18 @@ const Videos = () => {
           onClick={() => setSelectedVideo(null)}
         >
           <CloseButton onClick={() => setSelectedVideo(null)}>×</CloseButton>
-          <ModalContent
+          <VideoContainer
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
             exit={{ scale: 0.9 }}
             onClick={e => e.stopPropagation()}
           >
-            <iframe
-              src={selectedVideo.embedUrl}
-              title={selectedVideo.title}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
+            <VideoPlayer
+              controls
+              autoPlay
+              src={selectedVideo.videoUrl}
             />
-          </ModalContent>
+          </VideoContainer>
         </Modal>
       )}
       <Footer />

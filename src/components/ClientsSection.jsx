@@ -1,233 +1,145 @@
-import { useState, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import paidAdsBg from '../images/paid-ads-bg.jpg';
+import socialMediaBg from '../images/social-media-bg.jpg';
+import elmir from '../images/elmir-restaurant.jpg';
+import sabkeh from '../images/sabkeh-restaurant.jpg';
 
 const ClientsContainer = styled.section`
   padding: 6rem 5%;
-  background-color: #fff;
-  color: #1a1a1a;
+  background-color: #222;
+  color: white;
   text-align: center;
   position: relative;
   overflow: hidden;
 `;
 
 const SectionTitle = styled.h2`
-  font-size: 2.5rem;
-  margin-bottom: 4rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 1rem;
   font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #333;
+  background: linear-gradient(135deg, #fff 0%, #d1d1d1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
 
-const SliderContainer = styled.div`
-  position: relative;
+const SectionDescription = styled.p`
+  font-size: 1.1rem;
+  color: #f8f9fa;
+  max-width: 600px;
+  margin: 0 auto 4rem;
+  line-height: 1.6;
+`;
+
+const ClientsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 60px;
 `;
 
-const SliderWindow = styled.div`
-  overflow: hidden;
-  margin: 2rem 0;
-`;
-
-const SliderTrack = styled(motion.div)`
+const ClientCard = styled(motion.div)`
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 2rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 6rem;
-  padding: 2rem 0;
-`;
-
-const ClientLogo = styled(motion.div)`
-  flex: 0 0 200px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-  img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    filter: grayscale(100%) brightness(0.7);
-    opacity: 0.7;
-    transition: all 0.5s ease;
-  }
-
-  &:hover img {
-    filter: grayscale(0%) brightness(1);
-    opacity: 1;
-    transform: scale(1.05);
-  }
-`;
-
-const SliderButton = styled.button`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.1);
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #333;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 2;
+  gap: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    background: rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
   }
 
-  &.prev {
-    left: 0;
+  .image-container {
+    width: 100%;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
   }
 
-  &.next {
-    right: 0;
+  &:hover .image-container img {
+    transform: scale(1.1);
   }
 
-  svg {
-    width: 24px;
-    height: 24px;
-    fill: currentColor;
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    color: #fff;
+  }
+
+  p {
+    color: #f8f9fa;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
   }
 `;
 
 const clients = [
   {
     id: 1,
-    name: 'Damascuino',
-    logo: '/images/clients/damascuino.png'
+    name: 'Elmir Restaurant',
+    description: 'Brand identity and food photography',
+    image: elmir
   },
   {
     id: 2,
-    name: 'Naranj',
-    logo: '/images/clients/naranj.png'
+    name: 'Sabkeh Restaurant',
+    description: 'Visual branding and menu design',
+    image: sabkeh
   },
   {
     id: 3,
-    name: 'Sweet Taste',
-    logo: '/images/clients/sweet-taste.png'
+    name: 'Elements Marketing',
+    description: 'Social media campaign design',
+    image: socialMediaBg
   },
   {
     id: 4,
-    name: 'Prego',
-    logo: '/images/clients/prego.png'
-  },
-  {
-    id: 5,
-    name: 'Avenue',
-    logo: '/images/clients/avenue.png'
+    name: 'Digital Solutions',
+    description: 'Digital advertising and branding',
+    image: paidAdsBg
   }
 ];
 
 const ClientsSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const autoPlayRef = useRef();
-
-  const slideVariants = {
-    enter: (direction) => ({
-      x: direction > 0 ? '100%' : '-100%',
-      opacity: 0
-    }),
-    center: {
-      x: 0,
-      opacity: 1
-    },
-    exit: (direction) => ({
-      x: direction < 0 ? '100%' : '-100%',
-      opacity: 0
-    })
-  };
-
-  const visibleSlides = 3;
-  const totalSlides = Math.ceil(clients.length / visibleSlides);
-
-  const nextSlide = () => {
-    if (isAnimating) return;
-    setDirection(1);
-    setCurrentIndex((prev) => (prev + 1) % totalSlides);
-  };
-
-  const prevSlide = () => {
-    if (isAnimating) return;
-    setDirection(-1);
-    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
-  };
-
-  useEffect(() => {
-    autoPlayRef.current = nextSlide;
-  }, [nextSlide]);
-
-  useEffect(() => {
-    const play = () => {
-      autoPlayRef.current();
-    };
-
-    const interval = setInterval(play, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const getVisibleClients = () => {
-    const start = currentIndex * visibleSlides;
-    const visibleItems = [...clients.slice(start), ...clients.slice(0, start)].slice(0, visibleSlides);
-    return visibleItems;
-  };
-
   return (
-    <ClientsContainer id="clients">
+    <ClientsContainer>
       <SectionTitle>Our Happy Clients</SectionTitle>
-      <SliderContainer>
-        <SliderButton className="prev" onClick={prevSlide} aria-label="Previous">
-          <svg viewBox="0 0 24 24">
-            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-          </svg>
-        </SliderButton>
-        <SliderWindow>
-          <AnimatePresence initial={false} custom={direction} mode="wait">
-            <SliderTrack
-              key={currentIndex}
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{
-                x: { type: "spring", stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 }
-              }}
-              onAnimationStart={() => setIsAnimating(true)}
-              onAnimationComplete={() => setIsAnimating(false)}
-            >
-              {getVisibleClients().map((client) => (
-                <ClientLogo
-                  key={client.id}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <img src={client.logo} alt={client.name} />
-                </ClientLogo>
-              ))}
-            </SliderTrack>
-          </AnimatePresence>
-        </SliderWindow>
-        <SliderButton className="next" onClick={nextSlide} aria-label="Next">
-          <svg viewBox="0 0 24 24">
-            <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
-          </svg>
-        </SliderButton>
-      </SliderContainer>
+      <SectionDescription>
+        We've had the pleasure of working with amazing businesses across various industries.
+        Here are some of our valued partners who trust us with their brand.
+      </SectionDescription>
+      <ClientsGrid>
+        {clients.map((client) => (
+          <ClientCard
+            key={client.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: client.id * 0.1 }}
+          >
+            <div className="image-container">
+              <img src={client.image} alt={client.name} />
+            </div>
+            <h3>{client.name}</h3>
+            <p>{client.description}</p>
+          </ClientCard>
+        ))}
+      </ClientsGrid>
     </ClientsContainer>
   );
 };

@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
 import styled from '@emotion/styled';
 import Footer from '../components/Footer';
+import paidAdsBg from '../images/paid-ads-bg.jpg';
+import paidAdsServices from '../images/paid-ads-services.jpg';
+import paidAdsBenefits from '../images/paid-ads-benefits.jpg';
 
 const PageContainer = styled.div`
   min-height: 100vh;
@@ -17,7 +20,7 @@ const HeroSection = styled.section`
   padding: 0 5%;
   margin-top: -80px;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)),
-              url('/images/paid-ads-bg.jpg') center/cover no-repeat fixed;
+              url(${paidAdsBg}) center/cover no-repeat fixed;
   
   &::before {
     content: '';
@@ -209,7 +212,7 @@ const PaidAds = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <img src="/images/paid-ads-services.jpg" alt="Paid Advertising Services" />
+            <img src={paidAdsServices} alt="Paid Advertising Services" />
           </ImageContainer>
           <ServiceList>
             <SectionTitle>We Offer</SectionTitle>
@@ -312,7 +315,7 @@ const PaidAds = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <img src="/images/paid-ads-benefits.jpg" alt="Paid Advertising Benefits" />
+            <img src={paidAdsBenefits} alt="Paid Advertising Benefits" />
           </ImageContainer>
         </Grid>
       </Section>

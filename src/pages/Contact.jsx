@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import styled from '@emotion/styled';
 import Footer from '../components/Footer';
+import contactImage from '../images/contact-image.jpg';
 
 const PageContainer = styled.div`
   min-height: 100vh;
@@ -167,7 +168,7 @@ const Contact = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <img src="/images/contact-image.jpg" alt="Get in Touch" />
+          <img src={contactImage} alt="Get in Touch" />
         </ImageContainer>
         <ContactContent
           initial={{ opacity: 0, x: 20 }}

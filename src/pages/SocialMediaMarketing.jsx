@@ -1,6 +1,9 @@
-import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
+import styled from '@emotion/styled';
 import Footer from '../components/Footer';
+import socialMediaBg from '../images/social-media-bg.jpg';
+import socialMediaIcons from '../images/social-media-icons.jpg';
+import socialMediaBenefits from '../images/social-media-benefits.jpg';
 
 const PageContainer = styled.div`
   min-height: 100vh;
@@ -18,7 +21,7 @@ const HeroSection = styled.section`
   padding: 0 5%;
   margin-top: -80px;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)),
-              url('/images/social-media-bg.jpg') center/cover no-repeat fixed;
+              url(${socialMediaBg}) center/cover no-repeat fixed;
   
   &::before {
     content: '';
@@ -304,7 +307,7 @@ const SocialMediaMarketing = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <img src="/images/social-media-icons.jpg" alt="Social Media Marketing Expertise" />
+            <img src={socialMediaIcons} alt="Social Media Marketing Expertise" />
           </ImageContainer>
         </Grid>
       </Section>
@@ -368,7 +371,7 @@ const SocialMediaMarketing = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <img src="/images/social-media-benefits.jpg" alt="Social Media Benefits" />
+            <img src={socialMediaBenefits} alt="Social Media Benefits" />
           </ImageContainer>
           <motion.div
             initial={{ opacity: 0, x: 20 }}
