@@ -248,7 +248,7 @@ const Navbar = () => {
         <Link to="/contact" className={isActive('/contact')} onClick={toggleMenu}>Contact</Link>
       </MobileNavLinks>
       <LanguageSelector>
-        EN ▼
+        {/* EN ▼ */}
       </LanguageSelector>
     </Nav>
   );
